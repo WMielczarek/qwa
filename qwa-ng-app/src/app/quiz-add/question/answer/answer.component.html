@@ -1,0 +1,66 @@
+<form>
+  <div *ngIf="questionTypeId==='1'" class="container">
+    <div class="card">
+      <div class="card-header">Stwórz odpowiedz</div>
+      <div class="card-body">
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <input [(ngModel)]="answerToSave.text" id="text" name="text" type="text" class="form-control input-sm" placeholder="Odpowiedz" required>
+            </div>
+            <div class="col">
+              <input [(ngModel)]="answerToSave.correct" id="correct" name="correct" type="checkbox" value="true">Poprawna
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!answerSaved">
+          <button type="submit" class="btn btn-success" (click)="saveAnswer()"><i class="fa fa-save"></i></button>
+        </div>
+        <div *ngIf="answerSaved">
+          <button type="submit" class="btn btn-danger" (click)="removeAnswer()"><i class="fa fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="questionTypeId==='3'" class="container">
+    <div class="card">
+      <div class="card-header">Stwórz odpowiedz</div>
+      <div class="card-body">
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <input [(ngModel)]="answerToSave.text" id="textFill" name="textFill" type="text" class="form-control input-sm" placeholder="Odpowiedz" required>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!answerSaved">
+          <button type="submit" class="btn btn-success" (click)="saveFillAnswer()"><i class="fa fa-save"></i></button>
+        </div>
+        <div *ngIf="answerSaved">
+          <button type="submit" class="btn btn-danger" (click)="removeAnswer()"><i class="fa fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="questionTypeId==='2'" class="container">
+    <div class="card">
+      <div class="card-header">Stwórz odpowiedz</div>
+      <div class="card-body">
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <input [(ngModel)]="connectAnswerToSave.leftText" id="leftAnswer" name="leftAnswer" type="text" class="form-control input-sm" placeholder="Lewa" required>
+            </div>
+            <div class="col">
+              <input [(ngModel)]="connectAnswerToSave.rightText" id="rightAnswer" name="rightAnswer" type="text" class="form-control input-sm" placeholder="Prawa" required>
+            </div>
+            <div class="col">
+              <button type="submit" class="btn btn-success" (click)="saveConnectAnswer()"><i class="fa fa-save"></i></button>
+            </div>
+          </div>
+        </div>
+        <!--<button type="submit" class="btn btn-success" (click)="saveAnswer()"><i class="fa fa-save"></i></button> -->
+      </div>
+    </div>
+  </div>
+</form>

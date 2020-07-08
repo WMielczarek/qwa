@@ -1,0 +1,30 @@
+<div class="container" style="">
+  <div class="card">
+    <div class="card-header">
+      <p class="mb-0"> Stwórz pytanie </p>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <input [(ngModel)]="question.text" name="text" type="text" class="form-control" id="text" placeholder="Treść pytania" [disabled]="questionSaved" required>
+            </div>
+            <div class="col">
+              <div *ngIf="!questionSaved">
+                <button type="submit" class="btn btn-primary" (click)="saveQuestion()"><i class="fa fa-save"></i></button>
+              </div>
+              <div *ngIf="questionSaved">
+                <button type="button" class="btn btn-danger" (click)="removeQuestion()"><i class="fa fa-trash"></i></button>
+                <button type="button" class="btn btn-success float-right" (click)="addAnswerComponent()">Dodaj odpowiedz</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+        <ng-template #answerContainerRef></ng-template>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,30 @@
+<div class="container">
+  <table class="table table-trapped">
+    <thead>
+    <tr>
+      <th>Nazwa</th>
+      <th>Opis</th>
+      <th>Poziom trudności</th>
+      <th>Rozwiązany</th>
+      <th>Ocena</th>
+      <th>Rozwiąż</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let quiz of quizzes">
+      <td>{{quiz.name}}</td>
+      <td>{{quiz.text}}</td>
+      <td>{{quiz.difficultRate}}</td>
+      <td>{{quiz.solvedTimes}}</td>
+      <td>{{quiz.rating}}</td>
+      <td><button class="btn btn-danger" (click)="deleteQuiz(quiz.id)"><i class="fa fa-trash"></i></button>
+          <button class="btn btn-primary" (click)="editQuiz(quiz.id)"><i class="fa fa-edit"></i></button>
+          <button class="btn btn-primary" (click)="displayQuiz(quiz.id)" [routerLink]="['/quizView', quiz.id]"><i class="fa fa-eye"></i></button>
+      </td>
+
+    </tr>
+    </tbody>
+  </table>
+
+</div>

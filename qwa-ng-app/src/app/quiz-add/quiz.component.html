@@ -1,0 +1,56 @@
+<div class="row pt-5">
+  <div class="col-md-6 mx-auto">
+    <div class="card rounded-0">
+      <div class="card-header">
+        <h3 class="mb-0"> Stwórz quiz </h3>
+      </div>
+      <div class="card-body">
+        <form action="" class="form">
+          <div class="form-group">
+            <label for="name">Nazwa quizu</label>
+            <input [(ngModel)]="quiz.name" id="name"  name="name" type="text" class="form-control rounded-0" required [disabled]="quizCreated">
+          </div>
+          <div class="form-group">
+            <label for="text ">Opis quizu</label>
+            <textarea [(ngModel)]="quiz.text" id="text " name="text" rows="5" class="form-control rounded-0" required [disabled]="quizCreated">Przykładowy opis quizu.
+            </textarea>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="category">Wybierz kategorie</label>
+                <select [(ngModel)]="quiz.category" class="form-control" id="category" name="category" [disabled]="quizCreated" required>
+                  <option *ngFor="let c of categories" [value]="c.name">{{c.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="difficultRate">Poziom trudności quizu</label>
+                <select class="form-control" id="difficultRate" [(ngModel)]="quiz.difficultRate" name="difficultRate" [disabled]="quizCreated" required>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button (click)="addNewQuiz()" type="button" class="btn btn-primary float-right" [disabled]="quizCreated">Stwórz</button>
+          <div *ngIf="quizCreated">
+            <button  (click)="addQuestionComponent()" type="button" class="btn btn-primary">Dodaj pytanie</button>
+          </div>
+
+        </form>
+
+
+      </div>
+      <div>
+         <ng-template #questionContainerRef></ng-template>
+      </div>
+
+    </div>
+  </div>
+</div>

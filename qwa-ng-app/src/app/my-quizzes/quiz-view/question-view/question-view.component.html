@@ -1,0 +1,93 @@
+<div class="container">
+  <div *ngIf="question.type.id === 1">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="badge badge-success">Pytanie typu wybierz</mat-card-title>
+        <mat-card-subtitle>Opis typu pytania</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="Treść pytania"
+                        name="question"
+                        id="question"
+                        [(ngModel)]="question.text"
+                        disabled
+              ></textarea>
+          </mat-form-field>
+        </form>
+        <div *ngFor="let answer of question.answers, let i = index">
+          <mat-card>
+            <mat-card-subtitle>Odpowiedż {{i+1}}</mat-card-subtitle>
+            <mat-card-content>
+              <div layout="row" flex>
+                <form class="example-form">
+                  <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Treść odpowiedzi"
+                          name="{{i}}-question"
+                          id="{{i}}-answer"
+                          [(ngModel)]="answer.text"
+                  >
+                  </mat-form-field>
+                  <mat-checkbox [checked]="answer.correct" [(ngModel)]="answer.correct" name="{{i}}-answerCorrect">Poprawna</mat-checkbox>
+                </form>
+              </div>
+              <mat-card-actions>
+                <button mat-button (click)="updateAnswer(answer)">Zapisz</button>
+                <button mat-button (click)="removeAnswer(answer, i)">Usuń</button>
+              </mat-card-actions>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="addAnswer()">Dodaj odpowiedz</button>
+        <button mat-button (click)="removeQuestion()">Usuń pytanie</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div *ngIf="question.type.id === 3">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="badge badge-success">Pytanie typu wypełnij</mat-card-title>
+        <mat-card-subtitle>Opis typu pytania</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="Treść pytania"
+                        name="questionFill"
+                        id="questionFill"
+                        [(ngModel)]="question.text"
+                        disabled
+              ></textarea>
+          </mat-form-field>
+        </form>
+        <div *ngFor="let answer of question.answers, let i = index">
+          <mat-card>
+            <mat-card-subtitle>Odpowiedż {{i+1}}</mat-card-subtitle>
+            <mat-card-content>
+              <div layout="row" flex>
+                <form class="example-form">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Treść odpowiedzi"
+                           name="{{i}}-answer"
+                           [(ngModel)]="answer.text"
+                    >
+                  </mat-form-field>
+                </form>
+              </div>
+              <mat-card-actions>
+                <button mat-button (click)="updateAnswer(answer)">Zapisz</button>
+              </mat-card-actions>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="removeQuestion()">Usuń pytanie</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

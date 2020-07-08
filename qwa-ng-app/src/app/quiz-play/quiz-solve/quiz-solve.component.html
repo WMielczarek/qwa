@@ -1,0 +1,59 @@
+<div *ngIf="!this.endOfQuiz">
+  <div class="container">
+    <mat-card style="margin-top: 5%">
+      <mat-progress-bar mode="determinate" [value]="quizService.questionNumber/quizService.quiz.questions.length*100" ></mat-progress-bar>
+      <mat-card-title>
+        <h3>{{quizService.quiz.questions[quizService.questionNumber].type.name}}</h3>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <h2>{{quizService.quiz.questions[quizService.questionNumber].text}}</h2>
+      </mat-card-subtitle>
+
+      <div *ngIf="quizService.quiz.questions[quizService.questionNumber].type.id === 1">
+        <mat-card-content>
+          <mat-selection-list #answersList [(ngModel)]="selectedAnswers" (ngModelChange)="onNgModelChange($event)">
+            <mat-list-option  *ngFor = "let answer of quizService.quiz.questions[quizService.questionNumber].answers, let i = index" [value]="answer">
+              {{answer.text}}
+            </mat-list-option>
+          </mat-selection-list>
+          <p style="background-color: gray">
+            Liczba zaznaczonych odpowiedzi: {{answersList.selectedOptions.selected.length}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button (click)="confirm() ">Zatwierdz</button>
+        </mat-card-actions>
+      </div>
+
+      <div *ngIf="quizService.quiz.questions[quizService.questionNumber].type.id === 2">
+        <mat-card-content>
+          <div class="row">
+            <div cdkDropList class="example-list"
+                 (cdkDropListDropped)="dropLeftSide($event)">
+              <div class="example-box" *ngFor="let leftAnswer of this.connectsLeft " cdkDrag>{{leftAnswer.text}}</div>
+            </div>
+            <div cdkDropList class="example-list"
+                 (cdkDropListDropped)="dropRightSide($event)">
+              <div class="example-box" *ngFor="let rightAnswer of this.connectsRight" cdkDrag>{{rightAnswer.text}}</div>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button (click)="confirmConnect()">Zatwierdz</button>
+        </mat-card-actions>
+      </div>
+
+      <div *ngIf="quizService.quiz.questions[quizService.questionNumber].type.id === 3">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Wpisz brakujący tekst" [(ngModel)] = "answerFillText" name="answerFillText" id="answerFillText">
+          </mat-form-field>
+        </form>
+      <mat-card-actions align="end">
+        <button mat-button (click)="confirmFill()">Zatwierdz</button>
+      </mat-card-actions>
+      </div>
+    </mat-card>
+  </div>
+</div>
+

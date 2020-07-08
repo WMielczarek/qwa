@@ -1,0 +1,16 @@
+
+<div class="class container">
+  <div class="row" style="margin-top: 28px;">
+    <!-- Note list -->
+    <div *ngFor="let type of types"
+         style="margin-left: 10px; margin-bottom: 10px;">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{type.name}}</h5>
+          <p class="card-text">{{type.description}}</p>
+          <a class="btn btn-primary" (click)="typeChosen(type.id)">Dodaj pytanie</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
